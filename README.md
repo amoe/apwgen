@@ -1,1 +1,5 @@
 # apwgen
+
+    stack build
+
+

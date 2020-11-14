@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7375d2f1601444ea88f5e2bdfda57a6b868c08e4b68a1042ed649ae3305d958d
+-- hash: 7ceb6f210ad09738dfdd282762bbf34fb37dfe608d3353abe8607e5c1b2b0dae
 
 name:           apwgen
 version:        0.1.0.0
@@ -12,8 +12,7 @@ bug-reports:    https://github.com/githubuser/apwgen/issues
 author:         Author name here
 maintainer:     example@example.com
 copyright:      2020 Author name here
-license:        BSD3
-license-file:   LICENSE
+license:        AGPL-3
 build-type:     Simple
 cabal-version:  >= 1.10
 extra-source-files:
@@ -33,6 +32,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , random
   default-language: Haskell2010
 
 executable apwgen-exe
@@ -45,6 +45,7 @@ executable apwgen-exe
   build-depends:
       apwgen
     , base >=4.7 && <5
+    , random
   default-language: Haskell2010
 
 test-suite apwgen-test
@@ -58,4 +59,5 @@ test-suite apwgen-test
   build-depends:
       apwgen
     , base >=4.7 && <5
+    , random
   default-language: Haskell2010

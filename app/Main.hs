@@ -1,6 +1,9 @@
 module Main where
 
-import Lib
+import System.Random (randomRIO)
+--import Lib
 
 main :: IO ()
-main = someFunc
+main = do
+  putStrLn "Hello, world!"
+  return ()
