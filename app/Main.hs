@@ -24,6 +24,7 @@ f = take 2 $ repeat $ randomChar lowercaseChars
 -- rather than a lot of small containers
 main :: IO ()
 main = do
+  y <- randomChar uppercaseChars
   let y = sequence (take 2 $ repeat $ randomChar lowercaseChars)
   y >>= putStrLn
   return ()
