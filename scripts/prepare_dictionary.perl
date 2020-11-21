@@ -12,7 +12,7 @@ while (<>) {
 
     die "fail" if /"/;
     
-    print '    "' . $_ . '"' . "\n";
+    print '    "' . $_ . '",' . "\n";
 }
 
 print "]";
