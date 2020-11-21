@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7ceb6f210ad09738dfdd282762bbf34fb37dfe608d3353abe8607e5c1b2b0dae
+-- hash: d955a96ef0f93233d6de530cd4f8957420ef7ee3ccedb9e0d1f4433a7c780386
 
 name:           apwgen
 version:        0.1.0.0
@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Dictionary
       Lib
   other-modules:
       Paths_apwgen
@@ -46,6 +47,7 @@ executable apwgen-exe
       apwgen
     , base >=4.7 && <5
     , random
+    , containers
   default-language: Haskell2010
 
 test-suite apwgen-test
