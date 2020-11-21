@@ -11,8 +11,15 @@ while (<>) {
     chomp;
 
     die "fail" if /"/;
-    
-    print '    "' . $_ . '",' . "\n";
+
+    print '    "' . $_ . '"';
+
+    if (eof) {
+        print "\n";
+    } else {
+        print ",\n";
+    }
 }
 
-print "]";
+# Indentation necessary here, Haskell lists need to end like this.
+print "  ]\n";

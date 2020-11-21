@@ -102402,5 +102402,5 @@ dictionaryWords = [
     "épées",
     "étude",
     "étude's",
-    "études",
-]
+    "études"
+  ]
