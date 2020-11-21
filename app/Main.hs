@@ -5,14 +5,18 @@ import System.Random (randomRIO)
 
 
 lowercaseChars = ['a'..'z']
+uppercaseChars = ['A'..'Z']
 
-randomChar :: IO Char
-randomChar = do
-  i <- randomRIO (0 :: Int, (length lowercaseChars) - 1)
-  return $ lowercaseChars !! i
+type CharSet = [Char]
+
+randomChar :: CharSet -> IO Char
+randomChar xs = do
+  i <- randomRIO (0 :: Int, (length xs) - 1)
+  return $ xs !! i
+
 
 f :: [IO Char]
-f = take 2 $ repeat randomChar
+f = take 2 $ repeat $ randomChar lowercaseChars
 
 
 -- sequence takes a list of actions of type `m a` -- [IO Char] in this case
@@ -20,7 +24,6 @@ f = take 2 $ repeat randomChar
 -- rather than a lot of small containers
 main :: IO ()
 main = do
-  x <- randomChar
-  let y = sequence (take 2 $ repeat randomChar)
+  let y = sequence (take 2 $ repeat $ randomChar lowercaseChars)
   y >>= putStrLn
   return ()
