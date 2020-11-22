@@ -2,6 +2,7 @@ module Main where
 
 import System.Random (randomRIO)
 import qualified Data.Map as M
+import Dictionary (dictionaryWords)
 --import Lib
 
 
@@ -83,3 +84,4 @@ pickWeighted n (x:xs) i = if n >= i && n < endpoint
                           else pickWeighted n xs endpoint
   where endpoint = i + (snd x)
   
+
