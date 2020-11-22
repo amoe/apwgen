@@ -89,3 +89,19 @@ pickWeighted n xs = go n xs 0
 
 g d = pickWeighted 0 (M.toList h)
   where h = genHistogram $ concatMap trigrams d
+
+allWords :: IO [String]
+allWords = do
+  dict <- readFile "/usr/share/dict/words"
+  return $ lines dict
+
+
+fooMain :: IO ()
+fooMain = do
+  putStrLn "Starting."
+  words <- allWords
+  putStrLn ("Read " ++ (show (length words)) ++ " words.")
+  let x = concatMap trigrams words
+  putStrLn ("Calculated " ++ show (length x) ++ " trigrams.")
+  putStrLn "End."
+  
