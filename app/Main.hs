@@ -2,7 +2,7 @@ module Main where
 
 import System.Random (randomRIO)
 import qualified Data.Map as M
-import Dictionary (dictionaryWords)
+--import Dictionary (dictionaryWords)
 --import Lib
 
 
@@ -76,12 +76,16 @@ frequencies = [
   ]
 
 -- final arg is the accumulator -- must be supplied by user to init to 0
--- first arg should be the random int that was picked that must be in range of all weights.
-pickWeighted :: Integer -> [(String, Integer)] -> Integer -> Maybe String
-pickWeighted _ [] _ = Nothing
-pickWeighted n (x:xs) i = if n >= i && n < endpoint
-                          then Just $ fst x
-                          else pickWeighted n xs endpoint
-  where endpoint = i + (snd x)
-  
+-- first arg should be the random int that was picked that must be in range of sum all weights. 0 - 7 if weight sum is 8
+pickWeighted :: Integer -> [(a, Integer)] -> Maybe a
+pickWeighted n xs = go n xs 0
+  where go _ [] _ = Nothing
+        go n (x:xs) i = if n >= i && n < endpoint
+                        then Just $ fst x
+                        else go n xs endpoint
+          where endpoint = i + (snd x)  
 
+
+
+g d = pickWeighted 0 (M.toList h)
+  where h = genHistogram $ concatMap trigrams d
