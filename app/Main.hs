@@ -44,6 +44,14 @@ miniDictionary = [
 testSet :: [Integer]
 testSet = [1, 2, 2, 3]
 
+--trigrams "midge" => ["mid", "idg", "dge"]
+--trigrams "idge" => ["idg", "dge"]  
+trigrams :: String -> [String]
+trigrams [] = []
+trigrams [_] = []
+trigrams [_, _] = []
+trigrams s = (take 3 s) : trigrams (tail s)
+
 
 genHistogram :: [Integer] -> M.Map Integer Integer
 genHistogram [] = M.empty
@@ -62,6 +70,7 @@ frequencies = [
   ]
 
 -- final arg is the accumulator -- must be supplied by user to init to 0
+-- first arg should be the random int that was picked that must be in range of all weights.
 pickWeighted :: Integer -> [(String, Integer)] -> Integer -> Maybe String
 pickWeighted _ [] _ = Nothing
 pickWeighted n (x:xs) i = if n >= i && n < endpoint
