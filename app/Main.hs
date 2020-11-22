@@ -83,7 +83,13 @@ pickWeighted n xs = go n xs 0
         go n (x:xs) i = if n >= i && n < endpoint
                         then Just $ fst x
                         else go n xs endpoint
-          where endpoint = i + (snd x)  
+          where endpoint = i + (snd x)
+
+
+-- We can calculate this, but we don't actually need to, because the sum of the
+-- weights is always the same as the total length of the input trigram list.
+weightSum :: [(String, Integer)] -> Integer
+weightSum xs = sum $ map snd xs
 
 
 
@@ -101,7 +107,19 @@ fooMain = do
   putStrLn "Starting."
   words <- allWords
   putStrLn ("Read " ++ (show (length words)) ++ " words.")
-  let x = concatMap trigrams words
-  putStrLn ("Calculated " ++ show (length x) ++ " trigrams.")
+  let t = concatMap trigrams words
+  let nTrigrams = length t
+  putStrLn $ "Calculated " ++ show nTrigrams ++ " trigrams."
+  let y = genHistogram t
+  putStrLn $ "Histogram size was: " ++ show (M.size y)
+  r <- randomRIO (0, nTrigrams - 1)
+  putStrLn $ "Picked number: " ++ show r
+
+  let picked = pickWeighted (fromIntegral r) (M.toList y)
+
+  case picked of
+    (Just x) -> putStrLn $ "Picked trigram: " ++ x
+    Nothing -> error "No!"
+  
   putStrLn "End."
   
