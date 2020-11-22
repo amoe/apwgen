@@ -53,3 +53,19 @@ genHistogram (x:xs) = M.insertWith inc x 1 (genHistogram xs)
 main :: IO ()
 main = do
   putStrLn "foo"
+
+frequencies :: [(String, Integer)]
+frequencies = [
+    ("fry", 1),
+    ("bender", 5),
+    ("leela", 2)
+  ]
+
+-- final arg is the accumulator -- must be supplied by user to init to 0
+pickWeighted :: Integer -> [(String, Integer)] -> Integer -> Maybe String
+pickWeighted _ [] _ = Nothing
+pickWeighted n (x:xs) i = if n >= i && n < endpoint
+                          then Just $ fst x
+                          else pickWeighted n xs endpoint
+  where endpoint = i + (snd x)
+  
