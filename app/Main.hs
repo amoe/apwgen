@@ -36,6 +36,7 @@ miniDictionary = [
   "yaw",
   "midge",
   "constraint",
+  "condemned",
   "cost",
   "lamented"
   ]
@@ -53,7 +54,11 @@ trigrams [_, _] = []
 trigrams s = (take 3 s) : trigrams (tail s)
 
 
-genHistogram :: [Integer] -> M.Map Integer Integer
+f' d = concatMap trigrams d
+
+  
+-- Map keys always need Ord
+genHistogram :: Ord k => [k] -> M.Map k Integer
 genHistogram [] = M.empty
 genHistogram (x:xs) = M.insertWith inc x 1 (genHistogram xs)
   where inc _ oldValue = (+1) oldValue
