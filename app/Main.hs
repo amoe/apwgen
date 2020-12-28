@@ -5,9 +5,17 @@ import qualified Data.Map as M
 --import Dictionary (dictionaryWords)
 --import Lib
 
+leftHandAlpha = "qwertasdfgzxcvb"
+rightHandAlpha = "yuiophjklnm"
+
+leftHandNumeric = "12345"
+rightHandNumeric = "67890"
 
 lowercaseChars = ['a'..'z']
 uppercaseChars = ['A'..'Z']
+
+-- Hopefully this is all that's required because we won't include multiple
+-- special characters in passwords  
 
 type CharSet = [Char]
 
